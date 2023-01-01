@@ -1,9 +1,16 @@
 package com.kashapovrush.cardbinrequest
 
+import android.content.Intent
+import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.kashapovrush.cardbinrequest.NetworkUtil.Companion.generateURL
 import com.kashapovrush.cardbinrequest.NetworkUtil.Companion.getResponseFromURL
@@ -33,6 +40,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var phoneField: TextView
     lateinit var cityField: TextView
     lateinit var prepaidField: TextView
+    var urlFieldText: String? = null
+    var latitudeFieldText: String? = null
+    var longitudeFieldText: String? = null
+    var phoneFieldText: String? = null
+
 
     inner class BINQueryTask : AsyncTask<URL?, Void?, String?>() {
 
@@ -57,11 +69,7 @@ class MainActivity : AppCompatActivity() {
             var nameCountryFieldText: String? = null
             var emojiFieldText: String? = null
             var currencyFieldText: String? = null
-            var latitudeFieldText: String? = null
-            var longitudeFieldText: String? = null
             var nameBankFieldText: String? = null
-            var urlFieldText: String? = null
-            var phoneFieldText: String? = null
             var cityFieldText: String? = null
             var prepaidFieldText: String? = null
             if (response != null && response != "") {
@@ -142,6 +150,50 @@ class MainActivity : AppCompatActivity() {
         searchButton.setOnClickListener(onClickListener)
     }
 
+    fun intentToCall(view: View) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        val phoneNumber = Uri.parse("tel:$phoneFieldText")
+        intent.data = phoneNumber
+        startActivity(intent)
+    }
+
+    fun intentToMap(view: View) {
+        val intent = Intent(Intent.ACTION_VIEW)
+
+        val addressUri = Uri.parse("geo:$latitudeFieldText,$longitudeFieldText")
+        intent.data = addressUri
+
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        }
+    }
+
+    fun intentToSite(view: View) {
+        openWebPage("https://$urlFieldText")
+    }
+
+    fun openWebPage(url: String?) {
+        val webpage = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, webpage)
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        }
+        startActivity(intent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.request_history) {
+            val intent = Intent(this@MainActivity, RequestHistory::class.java)
+            startActivity(intent)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     fun init() {
         searchField = findViewById(R.id.search_id)
         searchButton = findViewById(R.id.search_button)
@@ -164,6 +216,4 @@ class MainActivity : AppCompatActivity() {
         cityField = findViewById(R.id.city_field)
         prepaidField = findViewById(R.id.prepaid_field)
     }
-
-
 }

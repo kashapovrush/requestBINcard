@@ -357,6 +357,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_gravity="center"
+                android:onClick="intentToSite"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -374,6 +375,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_gravity="center"
+                android:onClick="intentToCall"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -391,6 +393,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_gravity="center"
+                android:onClick="intentToMap"
                 />
 
         </LinearLayout>

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.kashapovrush.cardbinrequest">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CardBINRequest"
         tools:targetApi="31">
+        <activity
+            android:name=".RequestHistory"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
