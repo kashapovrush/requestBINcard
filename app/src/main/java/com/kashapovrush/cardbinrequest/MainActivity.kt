@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var phoneField: TextView
     lateinit var cityField: TextView
     lateinit var prepaidField: TextView
+    lateinit var preferenceManager: PreferenceManager
     var urlFieldText: String? = null
     var latitudeFieldText: String? = null
     var longitudeFieldText: String? = null
@@ -133,6 +134,7 @@ class MainActivity : AppCompatActivity() {
                 urlField.text = urlFieldText
                 phoneField.text = phoneFieldText
                 cityField.text = cityFieldText
+
             } else {
                 resultLayout.visibility = View.INVISIBLE
             }
@@ -143,9 +145,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
+        preferenceManager = PreferenceManager(applicationContext)
         val onClickListener = View.OnClickListener {
             val generatedURL: URL? = generateURL(searchField.text.toString())
             BINQueryTask().execute(generatedURL)
+            preferenceManager.putString("key", searchField.text.toString())
         }
         searchButton.setOnClickListener(onClickListener)
     }
@@ -157,7 +161,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun intentToMap(view: View) {
+    fun intentGoToMap(view: View) {
         val intent = Intent(Intent.ACTION_VIEW)
 
         val addressUri = Uri.parse("geo:$latitudeFieldText,$longitudeFieldText")
@@ -168,7 +172,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun intentToSite(view: View) {
+    fun intentGoToSite(view: View) {
         openWebPage("https://$urlFieldText")
     }
 

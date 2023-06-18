@@ -357,7 +357,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_gravity="center"
-                android:onClick="intentToSite"
+                android:onClick="intentGoToSite"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -393,7 +393,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_gravity="center"
-                android:onClick="intentToMap"
+                android:onClick="intentGoToMap"
                 />
 
         </LinearLayout>
