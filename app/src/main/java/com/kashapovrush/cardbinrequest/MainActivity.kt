@@ -122,6 +122,8 @@ class MainActivity : AppCompatActivity() {
 
                 lengthField.text = lengthFieldText
 
+
+
                 numericField.text = numericFieldText
                 alpha2Filed.text = alpha2FiledText
                 nameCountryField.text = nameCountryFieldText
