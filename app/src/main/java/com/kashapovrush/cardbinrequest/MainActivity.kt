@@ -14,37 +14,21 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.kashapovrush.cardbinrequest.NetworkUtil.Companion.generateURL
 import com.kashapovrush.cardbinrequest.NetworkUtil.Companion.getResponseFromURL
+import com.kashapovrush.cardbinrequest.databinding.ActivityMainBinding
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
-    lateinit var searchField: EditText
-    lateinit var searchButton: Button
-    lateinit var schemeField: TextView
-    lateinit var typeField: TextView
-    lateinit var resultLayout: LinearLayout
-    lateinit var brandField: TextView
-    lateinit var lengthField: TextView
-    lateinit var luhnField: TextView
-    lateinit var numericField: TextView
-    lateinit var alpha2Filed: TextView
-    lateinit var nameCountryField: TextView
-    lateinit var emojiField: TextView
-    lateinit var currencyField: TextView
-    lateinit var latitudeField: TextView
-    lateinit var longitudeField: TextView
-    lateinit var nameBankField: TextView
-    lateinit var urlField: TextView
-    lateinit var phoneField: TextView
-    lateinit var cityField: TextView
-    lateinit var prepaidField: TextView
-    lateinit var preferenceManager: PreferenceManager
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var preferenceManager: PreferenceManager
     var urlFieldText: String? = null
     var latitudeFieldText: String? = null
     var longitudeFieldText: String? = null
     var phoneFieldText: String? = null
+
+
 
 
     inner class BINQueryTask : AsyncTask<URL?, Void?, String?>() {
@@ -103,57 +87,57 @@ class MainActivity : AppCompatActivity() {
                 } catch (e: JSONException) {
                     e.printStackTrace()
                 }
-                resultLayout.visibility = View.VISIBLE
+                binding.resultLayout.visibility = View.VISIBLE
 
-                schemeField.text = schemeFieldText
-                typeField.text = typeFieldText
-                brandField.text = brandFieldText
+                binding.schemeField.text = schemeFieldText
+                binding.typeField.text = typeFieldText
+                binding.brandField.text = brandFieldText
                 if (prepaidFieldText.equals("false")) {
-                    prepaidField.text = "NO"
+                    binding.prepaidField.text = "NO"
                 } else {
-                    prepaidField.text = "YES"
+                    binding.prepaidField.text = "YES"
                 }
 
                 if (luhnFieldText.equals("false")) {
-                    luhnField.text = "NO"
+                    binding.luhnField.text = "NO"
                 } else {
-                    luhnField.text = "YES"
+                    binding.luhnField.text = "YES"
                 }
 
-                lengthField.text = lengthFieldText
+                binding.lengthField.text = lengthFieldText
 
 
 
-                numericField.text = numericFieldText
-                alpha2Filed.text = alpha2FiledText
-                nameCountryField.text = nameCountryFieldText
-                emojiField.text = emojiFieldText
-                currencyField.text = currencyFieldText
-                latitudeField.text = latitudeFieldText
-                longitudeField.text = longitudeFieldText
+                binding.numericField.text = numericFieldText
+                binding.alphaField.text = alpha2FiledText
+                binding.nameCountryField.text = nameCountryFieldText
+                binding.emojiField.text = emojiFieldText
+                binding.currencyField.text = currencyFieldText
+                binding.latitudeField.text = latitudeFieldText
+                binding.longitudeField.text = longitudeFieldText
 
-                nameBankField.text = nameBankFieldText
-                urlField.text = urlFieldText
-                phoneField.text = phoneFieldText
-                cityField.text = cityFieldText
+                binding.nameBankField.text = nameBankFieldText
+                binding.urlField.text = urlFieldText
+                binding.phoneField.text = phoneFieldText
+                binding.cityField.text = cityFieldText
 
             } else {
-                resultLayout.visibility = View.INVISIBLE
+                binding.resultLayout.visibility = View.INVISIBLE
             }
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        init()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         preferenceManager = PreferenceManager(applicationContext)
         val onClickListener = View.OnClickListener {
-            val generatedURL: URL? = generateURL(searchField.text.toString())
+            val generatedURL: URL? = generateURL(binding.searchId.text.toString())
             BINQueryTask().execute(generatedURL)
-            preferenceManager.putString("key", searchField.text.toString())
+            preferenceManager.putString("key", binding.searchId.text.toString())
         }
-        searchButton.setOnClickListener(onClickListener)
+        binding.searchButton.setOnClickListener(onClickListener)
     }
 
     fun intentToCall(view: View) {
@@ -200,26 +184,4 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun init() {
-        searchField = findViewById(R.id.search_id)
-        searchButton = findViewById(R.id.search_button)
-        schemeField = findViewById(R.id.scheme_field)
-        typeField = findViewById(R.id.type_field)
-        resultLayout = findViewById(R.id.result_layout)
-        brandField = findViewById(R.id.brand_field)
-        lengthField = findViewById(R.id.length_field)
-        luhnField = findViewById(R.id.luhn_field)
-        numericField = findViewById(R.id.numeric_field)
-        alpha2Filed = findViewById(R.id.alpha2_field)
-        nameCountryField = findViewById(R.id.name_country_field)
-        emojiField = findViewById(R.id.emoji_field)
-        currencyField = findViewById(R.id.currency_field)
-        latitudeField = findViewById(R.id.latitude_field)
-        longitudeField = findViewById(R.id.longitude_field)
-        nameBankField = findViewById(R.id.name_bank_field)
-        urlField = findViewById(R.id.url_field)
-        phoneField = findViewById(R.id.phone_field)
-        cityField = findViewById(R.id.city_field)
-        prepaidField = findViewById(R.id.prepaid_field)
-    }
 }

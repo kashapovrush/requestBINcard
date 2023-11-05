@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kashapovrush.cardbinrequest.databinding.ActivityRequestHistoryBinding
-
 class RequestHistory : AppCompatActivity() {
 
     private lateinit var preferenceManager: PreferenceManager
