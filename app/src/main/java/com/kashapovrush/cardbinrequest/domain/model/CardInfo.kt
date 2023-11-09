@@ -1,4 +1,4 @@
-package com.kashapovrush.cardbinrequest.domain
+package com.kashapovrush.cardbinrequest.domain.model
 
 data class CardInfo(
     val number: NumberCard,

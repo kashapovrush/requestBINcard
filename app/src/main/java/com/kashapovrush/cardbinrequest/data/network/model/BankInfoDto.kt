@@ -1,6 +1,6 @@
-package com.kashapovrush.cardbinrequest.domain
+package com.kashapovrush.cardbinrequest.data.network.model
 
-data class BankInfo(
+data class BankInfoDto(
     val name: String,
     val url: String,
     val phone: String,

@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.kashapovrush.cardbinrequest.domain.CardInfo
+import com.kashapovrush.cardbinrequest.domain.model.CardInfo
 import com.kashapovrush.cardbinrequest.data.network.ApiFactory
 import com.kashapovrush.cardbinrequest.databinding.ActivityMainBinding
 import retrofit2.Call
