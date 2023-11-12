@@ -3,42 +3,60 @@ package com.kashapovrush.cardbinrequest.presentation
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.kashapovrush.cardbinrequest.domain.model.CardInfo
-import com.kashapovrush.cardbinrequest.data.network.ApiFactory
+import androidx.lifecycle.ViewModelProvider
 import com.kashapovrush.cardbinrequest.databinding.ActivityMainBinding
+import com.kashapovrush.cardbinrequest.domain.model.CardInfoMain
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    var urlFieldText: String? = null
-    var latitudeFieldText: String? = null
-    var longitudeFieldText: String? = null
-    var phoneFieldText: String? = null
+    private lateinit var viewModel: MainViewModel
+
+    private lateinit var longitudeFieldText: String
+    private lateinit var latitudeFieldText: String
+    private lateinit var urlFieldText: String
+    private lateinit var phoneFieldText: String
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val component by lazy {
+        (application as CardInfoApplication).component
+    }
+//    var urlFieldText: String? = null
+//    var latitudeFieldText: String? = null
+//    var longitudeFieldText: String? = null
+//    var phoneFieldText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val callback = object : Callback<CardInfoMain> {
+            override fun onResponse(call: Call<CardInfoMain>, response: Response<CardInfoMain>) {
+                setVisibilityResult()
+                setViews(response)
+            }
+
+            override fun onFailure(call: Call<CardInfoMain>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "Введите номер", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
         binding.searchButton.setOnClickListener {
-            val api = ApiFactory.apiService
-            val info = api.getCardInfo(binding.searchId.text.toString())
-            info.enqueue(object : Callback<CardInfo> {
-                override fun onResponse(call: Call<CardInfo>, response: Response<CardInfo>) {
-                    setVisibilityResult()
-                    setViews(response)
+            viewModel.getCardInfo(binding.searchId.text.toString(), callback)
 
-                }
-                override fun onFailure(call: Call<CardInfo>, t: Throwable) {
-                    Log.d("MainActivityTest", "Error")
-                }
-
-            })
         }
     }
 
@@ -46,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         binding.resultLayout.visibility = View.VISIBLE
     }
 
-    private fun setViews(response: Response<CardInfo>) {
+    private fun setViews(response: Response<CardInfoMain>) {
         binding.apply {
             schemeField.text = validateInputText(response.body()?.scheme)
             lengthField.text = validateInputNumber(response.body()?.number?.length)

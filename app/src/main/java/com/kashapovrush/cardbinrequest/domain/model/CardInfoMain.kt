@@ -1,6 +1,6 @@
 package com.kashapovrush.cardbinrequest.domain.model
 
-data class CardInfo(
+data class CardInfoMain(
     val number: NumberCard,
     val scheme: String,
     val type: String,
