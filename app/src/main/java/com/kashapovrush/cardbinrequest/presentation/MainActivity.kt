@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
+    private lateinit var callback: Callback<CardInfoMain>
 
     private lateinit var longitudeFieldText: String
     private lateinit var latitudeFieldText: String
@@ -30,18 +31,35 @@ class MainActivity : AppCompatActivity() {
     private val component by lazy {
         (application as CardInfoApplication).component
     }
-//    var urlFieldText: String? = null
-//    var latitudeFieldText: String? = null
-//    var longitudeFieldText: String? = null
-//    var phoneFieldText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         component.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setCallback()
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
-        val callback = object : Callback<CardInfoMain> {
+        binding.searchButton.setOnClickListener {
+            viewModel.getCardInfo(binding.searchId.text.toString(), callback)
+
+        }
+
+        binding.phoneField.setOnClickListener {
+            viewModel.intentToCall(phoneFieldText, this)
+        }
+
+        binding.cityField.setOnClickListener {
+            viewModel.intentGoToMap(latitudeFieldText, longitudeFieldText, this)
+        }
+
+        binding.urlField.setOnClickListener {
+            viewModel.intentGOToSite(urlFieldText, this)
+        }
+    }
+
+    private fun setCallback() {
+        callback = object : Callback<CardInfoMain> {
             override fun onResponse(call: Call<CardInfoMain>, response: Response<CardInfoMain>) {
                 setVisibilityResult()
                 setViews(response)
@@ -51,12 +69,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Введите номер", Toast.LENGTH_SHORT)
                     .show()
             }
-        }
-
-        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
-        binding.searchButton.setOnClickListener {
-            viewModel.getCardInfo(binding.searchId.text.toString(), callback)
-
         }
     }
 
@@ -116,34 +128,27 @@ class MainActivity : AppCompatActivity() {
         return "NO"
     }
 
-    fun intentToCall(view: View) {
-        val intent = Intent(Intent.ACTION_DIAL)
-        val phoneNumber = Uri.parse("tel:$phoneFieldText")
-        intent.data = phoneNumber
-        startActivity(intent)
-    }
+//    fun intentGoToMap(latitude: String, longitudeFieldText: String, context: Context) {
+//        val intent = Intent(Intent.ACTION_VIEW)
+//
+//        val addressUri = Uri.parse("geo:$latitudeFieldText,$longitudeFieldText")
+//        intent.data = addressUri
+//
+//        if (intent.resolveActivity(packageManager) != null) {
+//            startActivity(intent)
+//        }
+//    }
 
-    fun intentGoToMap(view: View) {
-        val intent = Intent(Intent.ACTION_VIEW)
-
-        val addressUri = Uri.parse("geo:$latitudeFieldText,$longitudeFieldText")
-        intent.data = addressUri
-
-        if (intent.resolveActivity(packageManager) != null) {
-            startActivity(intent)
-        }
-    }
-
-    fun intentGoToSite(view: View) {
-        openWebPage("https://$urlFieldText")
-    }
-
-    fun openWebPage(url: String?) {
-        val webpage = Uri.parse(url)
-        val intent = Intent(Intent.ACTION_VIEW, webpage)
-        if (intent.resolveActivity(packageManager) != null) {
-            startActivity(intent)
-        }
-        startActivity(intent)
-    }
+//    fun intentGoToSite(view: View) {
+//        openWebPage("https://$urlFieldText")
+//    }
+//
+//    fun openWebPage(url: String?) {
+//        val webpage = Uri.parse(url)
+//        val intent = Intent(Intent.ACTION_VIEW, webpage)
+//        if (intent.resolveActivity(packageManager) != null) {
+//            startActivity(intent)
+//        }
+//        startActivity(intent)
+//    }
 }

@@ -1,5 +1,8 @@
 package com.kashapovrush.cardbinrequest.data.repository
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import com.kashapovrush.cardbinrequest.data.network.ApiService
 import com.kashapovrush.cardbinrequest.domain.CardBINRepository
 import com.kashapovrush.cardbinrequest.domain.model.CardInfoMain
@@ -13,5 +16,36 @@ class CardRepositoryImpl @Inject constructor(
 
     override fun getCardInfo(number: String): Call<CardInfoMain> {
         return apiService.getCardInfo(number)
+    }
+
+    override fun intentToCall(inputPhoneNumber: String, context: Context) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        val phoneNumber = Uri.parse("tel:$inputPhoneNumber")
+        intent.data = phoneNumber
+        context.startActivity(intent)
+    }
+
+    override fun intentGoToMap(latitude: String, longitude: String, context: Context) {
+        val intent = Intent(Intent.ACTION_VIEW)
+
+        val addressUri = Uri.parse("geo:$latitude,$longitude")
+        intent.data = addressUri
+
+        if (intent.resolveActivity(context.packageManager) != null) {
+            context.startActivity(intent)
+        }
+    }
+
+    override fun intentGoToSite(url: String, context: Context) {
+        openWebPage("https://$url", context)
+    }
+
+    fun openWebPage(url: String, context: Context) {
+        val webpage = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, webpage)
+        if (intent.resolveActivity(context.packageManager) != null) {
+            context.startActivity(intent)
+        }
+        context.startActivity(intent)
     }
 }
