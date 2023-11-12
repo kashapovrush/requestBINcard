@@ -127,28 +127,4 @@ class MainActivity : AppCompatActivity() {
         }
         return "NO"
     }
-
-//    fun intentGoToMap(latitude: String, longitudeFieldText: String, context: Context) {
-//        val intent = Intent(Intent.ACTION_VIEW)
-//
-//        val addressUri = Uri.parse("geo:$latitudeFieldText,$longitudeFieldText")
-//        intent.data = addressUri
-//
-//        if (intent.resolveActivity(packageManager) != null) {
-//            startActivity(intent)
-//        }
-//    }
-
-//    fun intentGoToSite(view: View) {
-//        openWebPage("https://$urlFieldText")
-//    }
-//
-//    fun openWebPage(url: String?) {
-//        val webpage = Uri.parse(url)
-//        val intent = Intent(Intent.ACTION_VIEW, webpage)
-//        if (intent.resolveActivity(packageManager) != null) {
-//            startActivity(intent)
-//        }
-//        startActivity(intent)
-//    }
 }
