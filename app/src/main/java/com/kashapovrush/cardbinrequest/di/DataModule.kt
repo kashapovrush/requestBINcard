@@ -1,5 +1,8 @@
 package com.kashapovrush.cardbinrequest.di
 
+import android.app.Application
+import com.kashapovrush.cardbinrequest.data.database.AppDatabase
+import com.kashapovrush.cardbinrequest.data.database.CardInfoDao
 import com.kashapovrush.cardbinrequest.data.network.ApiFactory
 import com.kashapovrush.cardbinrequest.data.network.ApiService
 import com.kashapovrush.cardbinrequest.data.repository.CardRepositoryImpl
@@ -21,6 +24,12 @@ interface DataModule {
         @ApplicationScope
         fun provideApiService(): ApiService {
             return ApiFactory.apiService
+        }
+
+        @Provides
+        @ApplicationScope
+        fun provideCardInfoDao(application: Application): CardInfoDao {
+            return AppDatabase.getInstance(application).cardInfoDao()
         }
     }
 }
