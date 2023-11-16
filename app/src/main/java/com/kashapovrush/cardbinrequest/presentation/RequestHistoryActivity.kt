@@ -37,6 +37,10 @@ class RequestHistoryActivity: AppCompatActivity() {
             adapter.submitList(it)
         }
 
+        adapter.onCardInfoClickListener = {
+            startActivity(CardInfoActivity.newIntent(this, it.id))
+        }
+
 
     }
 

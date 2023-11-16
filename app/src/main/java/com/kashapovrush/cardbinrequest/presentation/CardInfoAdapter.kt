@@ -11,6 +11,8 @@ import com.kashapovrush.cardbinrequest.domain.model.CardInfoMain
 
 class CardInfoAdapter: ListAdapter<CardInfoMain, CardInfoAdapter.CardInfoViewHolder>(DiffCallback()) {
 
+    var onCardInfoClickListener: ((CardInfoMain) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardInfoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.list_item,
@@ -24,6 +26,10 @@ class CardInfoAdapter: ListAdapter<CardInfoMain, CardInfoAdapter.CardInfoViewHol
     override fun onBindViewHolder(holder: CardInfoViewHolder, position: Int) {
         val cardInfo = getItem(position)
         holder.tvNumber.text = cardInfo.inputNumber
+
+        holder.view.setOnClickListener {
+            onCardInfoClickListener?.invoke(cardInfo)
+        }
     }
 
     class CardInfoViewHolder(val view: View): RecyclerView.ViewHolder(view) {

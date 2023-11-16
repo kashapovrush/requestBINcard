@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CardBINRequest"
         tools:targetApi="31">
-
+        <activity
+            android:name=".presentation.CardInfoActivity"
+            android:exported="false" />
         <activity android:name=".presentation.RequestHistoryActivity" />
         <activity
             android:name=".presentation.MainActivity"
@@ -27,4 +29,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
