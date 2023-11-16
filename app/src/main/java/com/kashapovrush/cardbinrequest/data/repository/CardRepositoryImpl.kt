@@ -3,14 +3,20 @@ package com.kashapovrush.cardbinrequest.data.repository
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import com.kashapovrush.cardbinrequest.data.database.CardInfoDao
+import com.kashapovrush.cardbinrequest.data.mapper.CardMapper
 import com.kashapovrush.cardbinrequest.data.network.ApiService
 import com.kashapovrush.cardbinrequest.domain.CardBINRepository
 import com.kashapovrush.cardbinrequest.domain.model.CardInfoMain
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import retrofit2.Call
 import javax.inject.Inject
 
 class CardRepositoryImpl @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val cardMapper: CardMapper,
+    private val cardInfoDao: CardInfoDao
 ): CardBINRepository {
 
 
@@ -38,6 +44,16 @@ class CardRepositoryImpl @Inject constructor(
 
     override fun intentGoToSite(url: String, context: Context) {
         openWebPage("https://$url", context)
+    }
+
+    override fun getCardInfoList(): Flow<List<CardInfoMain>> {
+        return cardInfoDao.getCardInfoList().map {
+            cardMapper.mapListDbModelToListEntity(it)
+        }
+    }
+
+    override suspend fun addCardInfoItem(cardInfoMain: CardInfoMain) {
+        cardInfoDao.addCardInfoItem(cardMapper.mapEntityToDbModel(cardInfoMain))
     }
 
     fun openWebPage(url: String, context: Context) {

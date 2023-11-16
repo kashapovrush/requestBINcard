@@ -3,403 +3,381 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".presentation.MainActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button_request_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="История запросов"/>
+
         <EditText
             android:id="@+id/search_id"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:paddingHorizontal="20dp"
             android:hint="Введите BIN номер"
-            android:textSize="24sp"
-            />
+            android:paddingHorizontal="20dp"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/search_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="24sp"
+            android:text="Запрос"
             android:textAllCaps="false"
-            android:text="Запрос"/>
+            android:textSize="24sp" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-        <LinearLayout
-            android:id="@+id/result_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            android:visibility="invisible">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SCHEME / NETWORK"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/scheme_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TYPE"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/type_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BRAND"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/brand_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PREPAID"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/prepaid_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="NUMBER"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                />
+            android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/result_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="SCHEME / NETWORK"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/scheme_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="TYPE"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/type_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="BRAND"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/brand_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="PREPAID"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/prepaid_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:text="NUMBER"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginHorizontal="10dp">
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Luhn"
-                        android:textSize="14sp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        />
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/luhn_field"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:text="Luhn"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/luhn_field"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        android:layout_gravity="center"
-                        />
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:text="Length"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/length_field"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:text="COUNTRY"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginHorizontal="10dp">
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="Numeric"
+                    android:textSize="14sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Length"
-                        android:textSize="14sp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        />
+                <TextView
+                    android:id="@+id/numeric_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/length_field"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        android:layout_gravity="center"
-                        />
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="alpha2"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/alpha_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="name"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/name_country_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="emoji"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/emoji_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="currency"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/currency_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="latitude"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/latitude_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="longitude"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/longitude_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:text="BANK"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="name"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/name_bank_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="url"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/url_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:onClick="intentGoToSite"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="phone"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/phone_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text="city"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/city_field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:onClick="intentGoToMap"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
             </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="COUNTRY"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Numeric"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/numeric_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="alpha2"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/alpha_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="name"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/name_country_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="emoji"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/emoji_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="currency"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/currency_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="latitude"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/latitude_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="longitude"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/longitude_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="BANK"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="name"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/name_bank_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="url"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/url_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:onClick="intentGoToSite"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="phone"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/phone_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="city"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                />
-
-            <TextView
-                android:id="@+id/city_field"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:onClick="intentGoToMap"
-                />
-
-        </LinearLayout>
         </ScrollView>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

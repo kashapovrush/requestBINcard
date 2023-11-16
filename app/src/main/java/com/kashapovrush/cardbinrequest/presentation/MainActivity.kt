@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.searchButton.setOnClickListener {
             viewModel.getCardInfo(binding.searchId.text.toString(), callback)
-
+            viewModel.addCardInfoItem(binding.searchId.text.toString())
         }
 
         binding.phoneField.setOnClickListener {
@@ -56,17 +56,22 @@ class MainActivity : AppCompatActivity() {
         binding.urlField.setOnClickListener {
             viewModel.intentGOToSite(urlFieldText, this)
         }
+
+        binding.buttonRequestHistory.setOnClickListener {
+            startActivity(RequestHistoryActivity.newIntent(this))
+        }
     }
 
     private fun setCallback() {
         callback = object : Callback<CardInfoMain> {
             override fun onResponse(call: Call<CardInfoMain>, response: Response<CardInfoMain>) {
+
                 setVisibilityResult()
                 setViews(response)
             }
 
             override fun onFailure(call: Call<CardInfoMain>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "Введите номер", Toast.LENGTH_SHORT)
+                Toast.makeText(this@MainActivity, "Ошибка ${t.message}", Toast.LENGTH_SHORT)
                     .show()
             }
         }
