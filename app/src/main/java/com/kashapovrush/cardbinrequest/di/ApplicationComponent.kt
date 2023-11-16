@@ -1,6 +1,7 @@
 package com.kashapovrush.cardbinrequest.di
 
 import android.app.Application
+import com.kashapovrush.cardbinrequest.presentation.CardInfoActivity
 import com.kashapovrush.cardbinrequest.presentation.CardInfoApplication
 import com.kashapovrush.cardbinrequest.presentation.MainActivity
 import com.kashapovrush.cardbinrequest.presentation.RequestHistoryActivity
@@ -16,6 +17,8 @@ interface ApplicationComponent {
     fun inject (activity: MainActivity)
 
     fun inject (activity: RequestHistoryActivity)
+
+    fun inject (activity: CardInfoActivity)
 
     @Component.Factory
     interface Factory {
