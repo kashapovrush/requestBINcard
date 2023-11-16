@@ -56,6 +56,10 @@ class CardRepositoryImpl @Inject constructor(
         cardInfoDao.addCardInfoItem(cardMapper.mapEntityToDbModel(cardInfoMain))
     }
 
+    override suspend fun deleteCardInfo(cardInfoMain: CardInfoMain) {
+        cardInfoDao.deleteCardInfo(cardInfoMain.id)
+    }
+
     fun openWebPage(url: String, context: Context) {
         val webpage = Uri.parse(url)
         val intent = Intent(Intent.ACTION_VIEW, webpage)

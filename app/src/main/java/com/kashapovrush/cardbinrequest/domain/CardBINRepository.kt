@@ -19,5 +19,5 @@ interface CardBINRepository {
 
     suspend fun addCardInfoItem(cardInfoMain: CardInfoMain)
 
-    suspend fun deleteCardInfo( cardInfoMain: CardInfoMain)
+    suspend fun deleteCardInfo(cardInfoMain: CardInfoMain)
 }
