@@ -1,7 +1,5 @@
 package com.kashapovrush.cardbinrequest.presentation
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -42,7 +40,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.searchButton.setOnClickListener {
             viewModel.getCardInfo(binding.searchId.text.toString(), callback)
-            viewModel.addCardInfoItem(binding.searchId.text.toString())
         }
 
         binding.phoneField.setOnClickListener {
@@ -65,7 +62,18 @@ class MainActivity : AppCompatActivity() {
     private fun setCallback() {
         callback = object : Callback<CardInfoMain> {
             override fun onResponse(call: Call<CardInfoMain>, response: Response<CardInfoMain>) {
-
+                viewModel.addCardInfoItem(
+                    CardInfoMain(
+                        inputNumber = binding.searchId.text.toString(),
+                        type = response.body()?.type,
+                        brand = response.body()?.brand,
+                        scheme = response.body()?.scheme,
+                        prepaid = response.body()?.prepaid,
+                        number = response.body()?.number,
+                        bank = response.body()?.bank,
+                        country = response.body()?.country
+                    )
+                )
                 setVisibilityResult()
                 setViews(response)
             }

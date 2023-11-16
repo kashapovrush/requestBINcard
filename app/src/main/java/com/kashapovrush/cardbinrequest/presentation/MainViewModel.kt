@@ -25,9 +25,9 @@ class MainViewModel @Inject constructor(
         return getCardInfoUseCase(number).enqueue(callback)
     }
 
-    fun addCardInfoItem(inputNumber: String) {
+    fun addCardInfoItem(cardInfoMain: CardInfoMain) {
         viewModelScope.launch {
-            addCardInfoItemUseCase(CardInfoMain(inputNumber = inputNumber))
+            addCardInfoItemUseCase(cardInfoMain)
         }
 
     }

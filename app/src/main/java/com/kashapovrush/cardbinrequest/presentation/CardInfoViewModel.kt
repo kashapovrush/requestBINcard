@@ -17,7 +17,7 @@ class CardInfoViewModel @Inject constructor(
     val showCardItem: LiveData<CardInfoMain?>
         get() = _showCardItem
 
-    fun getCardItem(id: String) {
+    fun getCardItem(id: Int) {
         viewModelScope.launch {
             _showCardItem.postValue(getCardItemUseCase(id))
         }

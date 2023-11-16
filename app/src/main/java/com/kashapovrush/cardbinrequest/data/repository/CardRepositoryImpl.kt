@@ -60,7 +60,7 @@ class CardRepositoryImpl @Inject constructor(
         cardInfoDao.deleteCardInfo(cardInfoMain.id)
     }
 
-    override suspend fun getCardItem(id: String): CardInfoMain {
+    override suspend fun getCardItem(id: Int): CardInfoMain {
         return cardMapper.mapDbModelToEntity(cardInfoDao.getCardItem(id))
     }
 

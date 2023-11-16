@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class GetCardItemUseCase@Inject constructor(private val repository: CardBINRepository) {
 
-    suspend operator fun invoke (id: String): CardInfoMain {
+    suspend operator fun invoke (id: Int): CardInfoMain {
         return repository.getCardItem(id)
     }
 }

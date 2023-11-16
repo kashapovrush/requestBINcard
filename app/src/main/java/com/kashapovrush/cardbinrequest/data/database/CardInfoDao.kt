@@ -20,6 +20,6 @@ interface CardInfoDao {
     @Query("DELETE FROM cards WHERE id=:id")
     suspend fun deleteCardInfo(id: Int)
 
-    @Query("SELECT * FROM cards WHERE inputNumber=:id LIMIT 1")
-    suspend fun getCardItem(id: String): CardInfoDb
+    @Query("SELECT * FROM cards WHERE id=:id LIMIT 1")
+    suspend fun getCardItem(id: Int): CardInfoDb
 }

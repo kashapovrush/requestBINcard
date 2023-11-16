@@ -31,7 +31,7 @@ class CardInfoActivity : AppCompatActivity() {
 
         cardId = intent.getIntExtra(EXTRA_ID, 0)
 
-        viewModel.getCardItem("42762200")
+        viewModel.getCardItem(cardId)
         viewModel.showCardItem.observe(this) {
             with(binding) {
                 luhnField.text = it?.number?.luhn.toString()
